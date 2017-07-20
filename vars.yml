@@ -1,0 +1,3 @@
+cluster_name: "misterhex"
+jvm: >
+  -Xms1g

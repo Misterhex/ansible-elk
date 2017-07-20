@@ -1,0 +1,64 @@
+---
+- hosts: elasticsearch
+  vars_files:
+     - vars.yml
+  tasks:
+  - name: Install java 8 preresequesits
+    apt: name=python-software-properties
+
+  - name: Add Java 8 repository
+    apt_repository: repo='ppa:webupd8team/java'
+
+  - name: Agree to oracle license
+    debconf: name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+
+  - name: Install Java 8
+    apt: name=oracle-java8-installer force=yes
+
+  - name: Add Elastic PGP key
+    apt_key:
+      url: "https://artifacts.elastic.co/GPG-KEY-elasticsearch"
+      state: present
+  
+  - name: Installing apt transport https
+    apt:
+      name: apt-transport-https
+      state: present
+
+  - name: Add elastic 5.x repository.
+    apt_repository: 
+      repo: deb https://artifacts.elastic.co/packages/5.x/apt stable main
+      state: present 
+      filename: elastic-5.x
+      update_cache: yes
+
+  - name: Update repositories cache and install "elasticsearch" package
+    apt:
+      name: elasticsearch
+      update_cache: yes
+  
+  - name: Template elasticsearch config
+    template:
+      src: ./j2/elasticsearch_config.j2
+      dest: /etc/elasticsearch/elasticsearch.yml
+    notify:
+      - restart elasticsearch
+
+  - name: Template jvm options config
+    template:
+      src: ./j2/jvm.options.j2
+      dest: /etc/elasticsearch/jvm.options
+    notify:
+      - restart elasticsearch
+
+  - name: Enable elasticsearch to start on boot
+    service:
+      name: elasticsearch
+      enabled: yes
+      state: started
+
+  handlers:
+    - name: restart elasticsearch
+      service: 
+        name:  elasticsearch
+        state: restarted

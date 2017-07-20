@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: False
+  tasks:
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+- include: elasticsearch_playbook.yml
+- include: kibana_playbook.yml
+- include: metricbeat_playbook.yml
