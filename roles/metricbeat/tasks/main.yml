@@ -1,0 +1,18 @@
+---
+# tasks file for metricbeat
+- name: Install deb package for metricbeat
+  apt:
+    deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-5.5.0-amd64.deb
+
+- name: Template metricbeat config
+  template:
+    src: ./templates/metricbeat.yml.j2
+    dest: /etc/metricbeat/metricbeat.yml
+  notify:
+    - restart metricbeat 
+
+- name: ensure metricbeat is running (and enable it at boot)
+  service: 
+    name: metricbeat 
+    enabled: yes
+    state: started

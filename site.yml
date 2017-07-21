@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: False
+  roles:
+    - python
+
+- hosts: es
+  roles:
+    - java8
+    - metricbeat
+
+- hosts: kibana
+  roles:
+    - java8
+    - kibana
+
+- hosts: all
+  roles:
+    - metricbeat

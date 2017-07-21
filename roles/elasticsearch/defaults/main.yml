@@ -1,3 +1,5 @@
+---
+# defaults file for elasticsearch
 cluster_name: "misterhex"
 jvm: >
   -Xms1g

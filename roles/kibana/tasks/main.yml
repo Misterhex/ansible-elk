@@ -1,0 +1,19 @@
+---
+# tasks file for kibana
+- name: Update repositories cache and install "kibana" package
+  apt:
+    name: kibana
+    update_cache: yes
+
+- name: Template kibana config
+  template:
+    src: ./template/kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+  notify:
+    - restart kibana
+
+- name: Enable kibana to start on boot
+  service:
+    name: kibana
+    enabled: yes
+    state: started
