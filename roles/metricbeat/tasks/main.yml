@@ -16,3 +16,5 @@
     name: metricbeat 
     enabled: yes
     state: started
+  notify:
+    - restart metricbeat 

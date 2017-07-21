@@ -1,2 +1,2 @@
 inventory.yml
-playbook.retry
+*.retry

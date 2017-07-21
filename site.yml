@@ -3,17 +3,17 @@
   gather_facts: False
   roles:
     - python
+    - metricbeat
 
-- hosts: es
+- hosts: elasticsearch
   roles:
     - java8
-    - metricbeat
+    - elastic5x
+    - elasticsearch
 
 - hosts: kibana
+  vars:
+    kibana_port: 9000
   roles:
-    - java8
+    - elastic5x
     - kibana
-
-- hosts: all
-  roles:
-    - metricbeat
