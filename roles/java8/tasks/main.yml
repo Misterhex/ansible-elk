@@ -1,7 +1,7 @@
 ---
 # tasks file for java8
 - name: Install java 8 preresequesits
-  apt: name=python-software-properties
+  apt: name=python-software-properties state=present
 
 - name: Add Java 8 repository
   apt_repository: repo='ppa:webupd8team/java'
@@ -10,4 +10,4 @@
   debconf: name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
 
 - name: Install Java 8
-  apt: name=oracle-java8-installer force=yes
+  apt: name=oracle-java8-installer force=yes state=present

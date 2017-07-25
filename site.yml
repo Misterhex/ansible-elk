@@ -1,10 +1,4 @@
 ---
-- hosts: all
-  gather_facts: False
-  roles:
-    - python
-    - metricbeat
-
 - hosts: elasticsearch
   roles:
     - java8
@@ -17,3 +11,7 @@
   roles:
     - elastic5x
     - kibana
+
+- hosts: all
+  roles:
+    - metricbeat

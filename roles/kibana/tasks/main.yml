@@ -3,6 +3,7 @@
 - name: Update repositories cache and install "kibana" package
   apt:
     name: kibana
+    state: present
     update_cache: yes
 
 - name: Template kibana config

@@ -3,6 +3,7 @@
 - name: Update repositories cache and install "elasticsearch" package
   apt:
     name: elasticsearch
+    state: present
     update_cache: yes
 
 - name: Template elasticsearch config
