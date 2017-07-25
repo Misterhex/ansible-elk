@@ -12,10 +12,10 @@
 filebeat.modules:
 
 #------------------------------- System Module -------------------------------
-#- module: system
+- module: system
   # Syslog
-  #syslog:
-    #enabled: true
+  syslog:
+    enabled: true
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
@@ -26,10 +26,10 @@ filebeat.modules:
     #prospector:
 
 #------------------------------- Apache2 Module ------------------------------
-#- module: apache2
+- module: apache2
   # Access logs
-  #access:
-    #enabled: true
+  access:
+    enabled: true
 
     # Ingest Node pipeline to use. Options are `with_plugins` (default)
     # and `no_plugins`. Use `no_plugins` if you don't have the geoip or
@@ -57,9 +57,9 @@ filebeat.modules:
     #prospector:
 
 #------------------------------- Auditd Module -------------------------------
-#- module: auditd
-  #log:
-    #enabled: true
+- module: auditd
+  log:
+    enabled: true
 
     # Set custom paths for the log files. If left empty,
     # Filebeat will choose the paths depending on your OS.
@@ -447,7 +447,8 @@ output.elasticsearch:
   # Scheme and port can be left out and will be set to the default (http and 9200)
   # In case you specify and additional path, the scheme is required: http://localhost:9200/path
   # IPv6 addresses should always be defined as: https://[2001:db8::1]:9200
-  hosts: ["localhost:9200"]
+
+  hosts: ["{{ groups['elasticsearch'] | join('", "') }}"]
 
   # Set gzip compression level.
   #compression_level: 0
@@ -1000,4 +1001,3 @@ logging.files:
 
   # Number of rotated log files to keep. Oldest files will be deleted first.
   #keepfiles: 7
-
