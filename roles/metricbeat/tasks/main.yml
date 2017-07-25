@@ -3,6 +3,7 @@
 - name: Install deb package for metricbeat
   apt:
     deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-5.5.0-amd64.deb
+    state: present
 
 - name: Template metricbeat config
   template:
@@ -11,10 +12,9 @@
   notify:
     - restart metricbeat 
 
-- name: ensure metricbeat is running (and enable it at boot)
+- name: Ensure metricbeat is running (and enable it at boot)
   service: 
     name: metricbeat 
     enabled: yes
-    state: started
   notify:
     - restart metricbeat 

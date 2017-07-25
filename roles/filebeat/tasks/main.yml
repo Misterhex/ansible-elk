@@ -16,6 +16,5 @@
   service: 
     name: filebeat 
     enabled: yes
-    state: started
   notify:
     - restart filebeat

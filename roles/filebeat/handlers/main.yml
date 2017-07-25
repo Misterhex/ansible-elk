@@ -2,5 +2,5 @@
 # handlers file for filebeat
 - name: restart filebeat
   service: 
-    name:  filebeat
+    name: filebeat
     state: restarted

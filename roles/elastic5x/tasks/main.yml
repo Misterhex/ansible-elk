@@ -10,7 +10,7 @@
     name: apt-transport-https
     state: present
 
-- name: Add elastic 5.x repository.
+- name: Add elastic 5.x repository
   apt_repository: 
     repo: deb https://artifacts.elastic.co/packages/5.x/apt stable main
     state: present 

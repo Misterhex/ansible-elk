@@ -1,5 +1,4 @@
 ---
 # defaults file for elasticsearch
 cluster_name: "openstack"
-jvm: >
-  -Xms4g
+es_heap_size: 2g # e.g. 2g = 2 gigabytes of jvm heap
