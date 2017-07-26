@@ -7,7 +7,7 @@
 
 - name: Template filebeat config
   template:
-    src: ./templates/filebeat.yml.j2
+    src: ./templates/filebeat.yml
     dest: /etc/filebeat/filebeat.yml
   notify:
     - restart filebeat 

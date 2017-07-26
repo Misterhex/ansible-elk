@@ -8,15 +8,28 @@
 
 - name: Template elasticsearch config
   template:
-    src: ./templates/elasticsearch.yml.j2
+    src: ./templates/elasticsearch.yml
     dest: /etc/elasticsearch/elasticsearch.yml
   notify:
     - restart elasticsearch
 
 - name: Template jvm options config
   template:
-    src: ./templates/jvm.options.j2
+    src: ./templates/jvm.options
     dest: /etc/elasticsearch/jvm.options
+  notify:
+    - restart elasticsearch
+
+- name: Install elasticsearch plugins
+  command: "bin/elasticsearch-plugin install {{item}}"
+  args:
+    chdir: /usr/share/elasticsearch/
+  register: install_plugins_out
+  changed_when: "'already exists' not in install_plugins_out.stdout"
+  failed_when: false
+  with_items: 
+    - ingest-user-agent
+    - ingest-geoip
   notify:
     - restart elasticsearch
 

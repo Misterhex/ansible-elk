@@ -1,26 +1,26 @@
 ---
-# - hosts: all
-#   gather_facts: false
-#   roles:
-#     - python
+- hosts: all
+  gather_facts: false
+  roles:
+    - python
 
-# - hosts: elasticsearch
-#   vars:
-#     cluster_name: openstack_test
-#     es_heap_size: 1g
-#   roles:
-#     - java8
-#     - elastic5x
-#     - elasticsearch
+- hosts: elasticsearch
+  vars:
+    cluster_name: openstack_test
+    es_heap_size: 1g
+  roles:
+    - java8
+    - elastic5x
+    - elasticsearch
 
 - hosts: kibana
   vars:
-    kibana_port: 9000
+    kibana_port: 5601
   roles:
-    # - elastic5x
+    - elastic5x
     - kibana
 
-# - hosts: all
-#   roles:
-#     - metricbeat
-#     - filebeat
+- hosts: all
+  roles:
+    - metricbeat
+    - filebeat

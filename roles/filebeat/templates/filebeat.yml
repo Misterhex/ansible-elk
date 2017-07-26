@@ -143,15 +143,15 @@ filebeat.prospectors:
 # * stdin: Reads the standard in
 
 #------------------------------ Log prospector --------------------------------
-- input_type: log
+#- input_type: log
 
   # Paths that should be crawled and fetched. Glob based paths.
   # To fetch all ".log" files from a specific level of subdirectories
   # /var/log/*/*.log can be used.
   # For each file found under this path, a harvester is started.
   # Make sure not file is defined twice as this can lead to unexpected behaviour.
-  paths:
-    - /var/log/*.log
+  #paths:
+    #- /var/log/*.log
     #- c:\programdata\elasticsearch\logs\*
 
   # Configure the file encoding for reading files with international characters
@@ -441,7 +441,7 @@ filebeat.prospectors:
 #-------------------------- Elasticsearch output -------------------------------
 output.elasticsearch:
   # Boolean flag to enable or disable the output module.
-  #enabled: true
+  enabled: true
 
   # Array of hosts to connect to.
   # Scheme and port can be left out and will be set to the default (http and 9200)

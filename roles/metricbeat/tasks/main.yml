@@ -7,7 +7,7 @@
 
 - name: Template metricbeat config
   template:
-    src: ./templates/metricbeat.yml.j2
+    src: ./templates/metricbeat.yml
     dest: /etc/metricbeat/metricbeat.yml
   notify:
     - restart metricbeat 
