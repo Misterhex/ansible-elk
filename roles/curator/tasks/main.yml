@@ -1,0 +1,12 @@
+---
+# tasks file for curator
+- name: Update repositories cache and install "curator" package
+  apt:
+    name: elasticsearch-curator=5.5.1
+    state: present
+    update_cache: yes
+
+- name: Check curator version is 5.1.1
+  command: curator --version
+  register: curator_version_out
+  failed_when: "'5.1.1' not in curator_version_out.stdout"

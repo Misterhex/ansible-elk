@@ -22,5 +22,11 @@
 
 - hosts: all
   roles:
+    - elastic5x
     - metricbeat
     - filebeat
+
+# - hosts: curator
+#   roles:
+#     - elastic5x
+#     - curator
