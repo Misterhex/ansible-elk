@@ -32,5 +32,8 @@
 
 - hosts: compute[0]
   tasks: 
-  - name: import_dashboards to kibana
+  - name: import metricbeats dashboards to kibana
     shell: /usr/share/metricbeat/scripts/import_dashboards
+
+  - name: import filebeat dashboards to kibana
+    shell: /usr/share/filebeat/scripts/import_dashboards
