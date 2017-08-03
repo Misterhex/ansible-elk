@@ -43,7 +43,7 @@
 
 - name: Change kibana's default index pattern
   uri:
-    url: "http://{{ groups['elasticsearch'][0] }}:9200/.kibana/config/5.5.0"
+    url: "http://{{ groups['elasticsearch'][0] }}:9200/.kibana/config/5.5.1"
     method: PUT
     body: "{{ lookup('file','default_index.json') }}"
     body_format: json

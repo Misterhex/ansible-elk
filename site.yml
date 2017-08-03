@@ -29,3 +29,8 @@
     - elastic5x
     - metricbeat
     - filebeat
+
+- hosts: compute[0]
+  tasks: 
+  - name: import_dashboards to kibana
+    shell: /usr/share/metricbeat/scripts/import_dashboards
