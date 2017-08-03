@@ -34,6 +34,5 @@
   tasks: 
   - name: import metricbeats dashboards to kibana
     shell: /usr/share/metricbeat/scripts/import_dashboards
-
   - name: import filebeat dashboards to kibana
     shell: /usr/share/filebeat/scripts/import_dashboards
