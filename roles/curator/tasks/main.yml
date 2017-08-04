@@ -2,11 +2,26 @@
 # tasks file for curator
 - name: Update repositories cache and install "curator" package
   apt:
-    name: elasticsearch-curator=5.5.1
+    deb: https://packages.elastic.co/curator/5/debian/pool/main/e/elasticsearch-curator/elasticsearch-curator_5.1.1_amd64.deb
     state: present
-    update_cache: yes
 
-- name: Check curator version is 5.1.1
-  command: curator --version
-  register: curator_version_out
-  failed_when: "'5.1.1' not in curator_version_out.stdout"
+- name: Create /etc/curator directory
+  file: 
+    path: /etc/curator 
+    state: directory 
+
+- name: Template curator config
+  template:
+    src: ./templates/curator.yml
+    dest: /etc/curator/curator.yml
+
+- name: Template action file
+  template:
+    src: ./templates/actions.yml
+    dest: /etc/curator/actions.yml
+
+- name: Add Cron to run curator to delete old indices
+  cron:
+    name: "curator"
+    minute: "30"
+    job: "curator --config /etc/curator/curator.yml /etc/curator/actions.yml"

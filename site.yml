@@ -30,6 +30,11 @@
     - metricbeat
     - filebeat
 
+- hosts: curator
+  become: true
+  roles:
+    - curator
+
 - hosts: compute[0]
   tasks: 
   - name: import metricbeats dashboards to kibana

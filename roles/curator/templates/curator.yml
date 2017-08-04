@@ -1,0 +1,7 @@
+---
+client:
+  hosts:
+    - 127.0.0.1
+  port: 9200
+  use_ssl: False
+  timeout: 120
