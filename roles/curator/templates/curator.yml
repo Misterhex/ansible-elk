@@ -5,3 +5,8 @@ client:
   port: 9200
   use_ssl: False
   timeout: 120
+
+logging:
+  loglevel: INFO
+  logfile: /var/log/curator.log
+  logformat: default

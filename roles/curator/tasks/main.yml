@@ -10,6 +10,11 @@
     path: /etc/curator 
     state: directory 
 
+- name: Create /var/log/curator directory
+  file: 
+    path: /var/log/curator
+    state: directory 
+
 - name: Template curator config
   template:
     src: ./templates/curator.yml

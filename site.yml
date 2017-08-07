@@ -32,6 +32,8 @@
 
 - hosts: curator
   become: true
+  vars:
+    delete_older_than_days: 1
   roles:
     - curator
 
