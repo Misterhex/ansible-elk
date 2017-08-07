@@ -1,0 +1,36 @@
+---
+# tasks file for elastalert
+- name: install elastalert
+  pip:
+    name: elastalert
+    state: present
+
+- name: Create /etc/elastalert directory
+  file: 
+    path: /etc/elastalert
+    state: directory 
+
+- name: Create /etc/elastalert/rules directory
+  file: 
+    path: /etc/elastalert/rules
+    state: directory 
+
+- name: Template elastalert config
+  template:
+    src: ./templates/config.yml
+    dest: /etc/elastalert/config.yml
+
+- name: Template elastalert rules
+  template:
+    src: ./templates/rules/example_frequency.yml
+    dest: /etc/elastalert/rules/example_frequency.yml
+
+- name: Template elastalert config
+  template:
+    src: ./templates/config.yml
+    dest: /etc/elastalert/config.yml
+
+- name: elastalert-create-index default
+  shell: "elastalert-create-index --host {{ groups['elasticsearch'][0] }} --port 9200 --index elastalert_status --old-index '' --url-prefix '' --no-ssl --no-auth "
+  register: elastalert_create_index_out
+  changed_when: "'already exists' not in elastalert_create_index_out.stdout"

@@ -1,0 +1,7 @@
+---
+# tasks file for pip
+- name: Update repositories cache and install "python-pip" package
+  apt:
+    name: python-pip
+    state: present
+    update_cache: yes
