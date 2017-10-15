@@ -19,35 +19,35 @@
     enabled: yes
     state: started
 
-- name: Add kibana's metricbeat pattern
-  uri:
-    url: "http://{{ groups['elasticsearch'][0] }}:9200/.kibana/index-pattern/metricbeat-*"
-    method: PUT
-    body: "{{ lookup('file','metricbeat.json') }}"
-    body_format: json
-    headers:
-      content-type: "application/json"
-    status_code: 200,201
-    changed_when: status = 201
+# - name: Add kibana's metricbeat pattern
+#   uri:
+#     url: "http://{{ groups['elasticsearch'][0] }}:9200/.kibana/index-pattern/metricbeat-*"
+#     method: PUT
+#     body: "{{ lookup('file','metricbeat.json') }}"
+#     body_format: json
+#     headers:
+#       content-type: "application/json"
+#     status_code: 200,201
+#     changed_when: status = 201
 
-- name: Add kibana's filebeat pattern
-  uri:
-    url: "http://{{ groups['elasticsearch'][0] }}:9200/.kibana/index-pattern/filebeat-*"
-    method: PUT
-    body: "{{ lookup('file','filebeat.json') }}"
-    body_format: json
-    headers:
-      content-type: "application/json"
-    status_code: 200,201
-    changed_when: status = 201
+# - name: Add kibana's filebeat pattern
+#   uri:
+#     url: "http://{{ groups['elasticsearch'][0] }}:9200/.kibana/index-pattern/filebeat-*"
+#     method: PUT
+#     body: "{{ lookup('file','filebeat.json') }}"
+#     body_format: json
+#     headers:
+#       content-type: "application/json"
+#     status_code: 200,201
+#     changed_when: status = 201
 
-- name: Change kibana's default index pattern
-  uri:
-    url: "http://{{ groups['elasticsearch'][0] }}:9200/.kibana/config/5.5.1"
-    method: PUT
-    body: "{{ lookup('file','default_index.json') }}"
-    body_format: json
-    headers:
-      content-type: "application/json"
-    status_code: 200,201
-    changed_when: status = 201
+# - name: Change kibana's default index pattern
+#   uri:
+#     url: "http://{{ groups['elasticsearch'][0] }}:9200/.kibana/config/5.5.1"
+#     method: PUT
+#     body: "{{ lookup('file','default_index.json') }}"
+#     body_format: json
+#     headers:
+#       content-type: "application/json"
+#     status_code: 200,201
+#     changed_when: status = 201
