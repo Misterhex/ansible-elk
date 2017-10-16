@@ -23,6 +23,12 @@
   roles:
     - elasticsearch
 
+- hosts: elasticsearch
+  become: true
+  roles:
+    - metricbeat
+    - filebeat
+
 - hosts: kibana
   become: true
   vars:
@@ -31,13 +37,6 @@
     - elastic5x
     - kibana
 
-- hosts: compute
-  become: true
-  roles:
-    - elastic5x
-    - metricbeat
-    - filebeat
-
 - hosts: curator
   become: true
   vars:
@@ -45,7 +44,7 @@
   roles:
     - curator
 
-- hosts: compute[0]
+- hosts: elasticsearch[0]
   tasks: 
   - name: import metricbeats dashboards to kibana
     shell: /usr/share/metricbeat/scripts/import_dashboards

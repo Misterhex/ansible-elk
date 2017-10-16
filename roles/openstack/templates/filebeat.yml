@@ -1,0 +1,66 @@
+######################## Filebeat Configuration ############################
+
+# This file is a full configuration example documenting all non-deprecated
+# options in comments. For a shorter configuration example, that contains only
+# the most common options, please see filebeat.yml in the same directory.
+#
+# You can find the full configuration reference here:
+# https://www.elastic.co/guide/en/beats/filebeat/index.html
+
+
+#==========================  Modules configuration ============================
+filebeat.modules:
+
+#------------------------------- System Module -------------------------------
+- module: system
+  # Syslog
+  syslog:
+    enabled: true
+
+#------------------------------- Apache2 Module ------------------------------
+- module: apache2
+  # Access logs
+  access:
+    enabled: true
+
+#------------------------------- Auditd Module -------------------------------
+- module: auditd
+  log:
+    enabled: true
+
+#=========================== Filebeat prospectors =============================
+
+# List of prospectors to fetch data.
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /var/log/nova/*.log
+    - /var/log/ceilometer/*.log
+    - /var/log/neutron/*.log
+    - /var/log/glance/*.log
+    - /var/log/swift/*.log
+    - /var/log/heat/*.log
+    - /var/log/designate/*.log
+
+#-------------------------- Elasticsearch output -------------------------------
+output.elasticsearch:
+  # Boolean flag to enable or disable the output module.
+  enabled: true
+
+  hosts: ["{{ groups['elasticsearch'] | join('", "') }}"]
+
+logging.to_files: true
+logging.files:
+  # Configure the path where the logs are written. The default is the logs directory
+  # under the home path (the binary location).
+  #path: /var/log/filebeat
+
+  # The name of the files where the logs are written to.
+  #name: filebeat
+
+  # Configure log file size limit. If limit is reached, log file will be
+  # automatically rotated
+  #rotateeverybytes: 10485760 # = 10MB
+
+  # Number of rotated log files to keep. Oldest files will be deleted first.
+  #keepfiles: 7

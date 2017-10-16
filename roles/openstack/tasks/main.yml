@@ -1,0 +1,20 @@
+---
+# tasks file for filebeat
+- name: Install deb package for filebeat 
+  apt:
+    deb: https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.5.0-amd64.deb
+    state: present
+
+- name: Template filebeat config
+  template:
+    src: ./templates/filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+  notify:
+    - restart filebeat 
+
+- name: ensure filebeat is running (and enable it at boot)
+  service: 
+    name: filebeat 
+    enabled: yes
+  notify:
+    - restart filebeat
