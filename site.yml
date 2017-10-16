@@ -8,11 +8,19 @@
 - hosts: elasticsearch
   become: true
   vars:
-    cluster_name: openstack_test
+    cluster_name: openstack
     es_heap_size: 2g
   roles:
     - java8
     - elastic5x
+
+- hosts: elasticsearch
+  serial: 1
+  become: true
+  vars:
+    cluster_name: openstack
+    es_heap_size: 2g
+  roles:
     - elasticsearch
 
 - hosts: kibana
