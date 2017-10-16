@@ -54,4 +54,5 @@
 - hosts: openstack
   become: true
   roles:
+    - metricbeat
     - openstack
