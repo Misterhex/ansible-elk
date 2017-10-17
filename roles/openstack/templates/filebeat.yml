@@ -41,6 +41,13 @@ filebeat.prospectors:
     - /var/log/swift/*.log
     - /var/log/heat/*.log
     - /var/log/designate/*.log
+    - /var/log/chrony/*.log
+    - /var/log/keystone/*.log
+    - /var/log/cinder/*.log
+    - /var/log/gnocchi/*.log
+    - /var/log/httpd/keystone_wsgi_admin_error.log
+    - /var/log/httpd/keystone_wsgi_main_error.log
+    - /var/log/httpd/gnocchi_wsgi_error.log
   
 fields:
    app: openstack
