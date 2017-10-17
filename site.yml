@@ -45,6 +45,11 @@
     - curator
 
 - hosts: elasticsearch[0]
+  become: true
+  roles:
+    - elasticsearch-ingest-openstack
+
+- hosts: elasticsearch[0]
   tasks: 
   - name: import metricbeats dashboards to kibana
     shell: /usr/share/metricbeat/scripts/import_dashboards

@@ -1,0 +1,12 @@
+{
+    "description": "openstack grok",
+    "processors": [
+      {
+	        "grok": {
+		        "field": "message",
+		        "patterns": ["%{TIMESTAMP_ISO8601:message_timestamp} %{NUMBER:response} %{LOGLEVEL:log_level} %{PROG:program} %{GREEDYDATA:message}"],
+		         "ignore_failure" : true
+	      }
+      }
+    ]
+  }
