@@ -25,6 +25,8 @@
 
 - hosts: elasticsearch
   become: true
+  vars:
+    machine_role: elasticsearch
   roles:
     - metricbeat
     - filebeat
@@ -58,6 +60,8 @@
   
 - hosts: openstack
   become: true
+  vars:
+    machine_role: openstack
   roles:
     - metricbeat
     - openstack

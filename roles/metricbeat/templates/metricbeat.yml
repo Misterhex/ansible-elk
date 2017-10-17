@@ -53,6 +53,7 @@ metricbeat.modules:
 # output.
 fields:
   name:  {{inventory_hostname}}
+  machine_role: {{machine_role}}
 
 #================================ Outputs =====================================
 
