@@ -4,6 +4,6 @@
   uri:
     url: "http://{{ inventory_hostname }}:9200/_ingest/pipeline/openstackgrok/"
     method: PUT
-    body: "{{ lookup('file','grok-processor.json') }}"
-    status_code: 201
+    body: "{{ lookup('file','pipelines.json') }}"
+    status_code: 200
     body_format: json

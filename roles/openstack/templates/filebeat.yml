@@ -41,6 +41,9 @@ filebeat.prospectors:
     - /var/log/swift/*.log
     - /var/log/heat/*.log
     - /var/log/designate/*.log
+  
+fields:
+   app: openstack
 
 #-------------------------- Elasticsearch output -------------------------------
 output.elasticsearch:
@@ -48,6 +51,7 @@ output.elasticsearch:
   enabled: true
 
   hosts: ["{{ groups['elasticsearch'] | join('", "') }}"]
+  pipeline: openstackgrok
 
 logging.to_files: true
 logging.files:
