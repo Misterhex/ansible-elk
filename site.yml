@@ -5,6 +5,9 @@
   roles:
     - python
 
+- hosts: all
+  gather_facts: true
+
 - hosts: elasticsearch
   become: true
   vars:
