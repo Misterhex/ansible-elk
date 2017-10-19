@@ -48,6 +48,8 @@
     delete_older_than_days: 1
   roles:
     - curator
+  tags:
+    - curator
 
 - hosts: elasticsearch[0]
   become: true

@@ -1,2 +1,3 @@
 ---
 # defaults file for curator
+delete_older_than_days: 3
