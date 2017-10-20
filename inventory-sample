@@ -1,13 +1,41 @@
 [all_servers:children]
+elk
+openstack
+
+[elk:children]
 compute
 elasticsearch
 kibana
+curator
+
+[elk:vars]
+ansible_user = ubuntu
+ansible_ssh_private_key_file = xxx
 
 [compute]
-xxx.xxx.xxx.xxx
+192.168.0.42
+192.168.0.34
+192.168.0.82
 
 [elasticsearch]
-xxx.xxx.xxx.xxx
+192.168.0.42
+192.168.0.34
+192.168.0.82
 
 [kibana]
-xxx.xxx.xxx.xxx
+192.168.0.42
+
+[curator]
+192.168.0.42
+
+[openstack]
+192.168.0.140
+192.168.0.110
+192.168.0.141
+192.168.0.22
+192.168.0.23
+
+[openstack:vars]
+ansible_connection = ssh
+ansible_user = xxx
+ansible_ssh_pass = xxx
