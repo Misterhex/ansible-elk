@@ -29,3 +29,18 @@ actions:
       timestring: '%Y.%m.%d'
       unit: days
       unit_count: {{ delete_older_than_days }}
+   3:
+    action: delete_indices
+    options:
+      ignore_empty_list: True
+      disable_action: False
+    filters:
+    - filtertype: pattern
+      kind: prefix
+      value: packetbeat-*
+    - filtertype: age
+      source: name
+      direction: older
+      timestring: '%Y.%m.%d'
+      unit: days
+      unit_count: {{ delete_older_than_days }}

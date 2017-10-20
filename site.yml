@@ -56,13 +56,6 @@
   roles:
     - elasticsearch-ingest-openstack
 
-- hosts: elasticsearch[0]
-  tasks: 
-  - name: import metricbeats dashboards to kibana
-    shell: /usr/share/metricbeat/scripts/import_dashboards
-  - name: import filebeat dashboards to kibana
-    shell: /usr/share/filebeat/scripts/import_dashboards
-  
 - hosts: openstack
   become: true
   vars:
@@ -70,3 +63,13 @@
   roles:
     - metricbeat
     - openstack
+
+- hosts: elasticsearch[0]
+  tasks: 
+  - name: import metricbeats dashboards to kibana
+    shell: /usr/share/metricbeat/scripts/import_dashboards
+  - name: import filebeat dashboards to kibana
+    shell: /usr/share/filebeat/scripts/import_dashboards
+  - name: import packetbeat dashboards to kibana
+    shell: /usr/share/packetbeat/scripts/import_dashboards
+  
